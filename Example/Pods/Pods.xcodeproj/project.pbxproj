@@ -14,8 +14,8 @@
 		480F0F00332877BF6613C3700357CFE8 /* LVGSwiftSystemSoundServices-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81792F200EA5D1CADDE8FB9C0BB18B83 /* LVGSwiftSystemSoundServices-dummy.m */; };
 		578EA02E1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
 		578EA02F1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
-		578EA0301CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
-		578EA0311CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
+		578EA05B1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA05A1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift */; };
+		578EA05C1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA05A1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift */; };
 		92A9BB829895F3031B04AA371292F86A /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBED4CEF5DCB12A89355D0F680C7890 /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m */; };
 		A3E211843F9F8645A1739243CFDF1508 /* LVGSwiftSystemSoundServices.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAAD530575AED4EEF50E6E9617A2AFA9 /* LVGSwiftSystemSoundServices.bundle */; };
 		A4491CCEDFC2BA3BC82BD5708B9F30F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
@@ -63,6 +63,7 @@
 		56479ACBE98405D514BBC94003116CF8 /* Pods-LVGSwiftSystemSoundServices_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LVGSwiftSystemSoundServices_Example.release.xcconfig"; sourceTree = "<group>"; };
 		578EA02C1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h"; sourceTree = "<group>"; };
 		578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LVGSwiftSystemSoundServices.swift; sourceTree = "<group>"; };
+		578EA05A1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LVGFourCharCodeUtilities.swift; sourceTree = "<group>"; };
 		6D3E258356A7265B385A5A4A38ED1A67 /* LVGSwiftSystemSoundServices.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LVGSwiftSystemSoundServices.xcconfig; sourceTree = "<group>"; };
 		7297B17423F3CDC27B35193CB5A4C0BF /* Pods-LVGSwiftSystemSoundServices_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LVGSwiftSystemSoundServices_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		73A1AE8230DFBEDC49AC7EB03FCB6456 /* Pods-LVGSwiftSystemSoundServices_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LVGSwiftSystemSoundServices_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */,
+				578EA05A1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift */,
 				578EA02C1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h */,
 			);
 			path = Classes;
@@ -405,7 +407,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578EA0311CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				0C39536DD048099550D6E9206F6250F3 /* Pods-LVGSwiftSystemSoundServices_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,7 +415,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578EA0301CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				92A9BB829895F3031B04AA371292F86A /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578EA02F1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
+				578EA05C1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +434,7 @@
 			files = (
 				578EA02E1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				480F0F00332877BF6613C3700357CFE8 /* LVGSwiftSystemSoundServices-dummy.m in Sources */,
+				578EA05B1CC0C52500B93161 /* LVGFourCharCodeUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +510,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/LVGSwiftSystemSoundServices/LVGSwiftSystemSoundServices-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/LVGSwiftSystemSoundServices/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/LVGSwiftSystemSoundServices/LVGSwiftSystemSoundServices.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -656,7 +658,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/LVGSwiftSystemSoundServices/LVGSwiftSystemSoundServices-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/LVGSwiftSystemSoundServices/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/LVGSwiftSystemSoundServices/LVGSwiftSystemSoundServices.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
