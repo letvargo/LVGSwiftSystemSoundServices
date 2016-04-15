@@ -37,4 +37,19 @@ class SystemSoundTypeTests: XCTestCase {
             print("\(error)")
         }
     }
+    
+    func testOpenURLThrowsErrorWithNonSoundFile() {
+    
+        var didThrowError = false
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(NSURL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png")))
+            XCTAssertTrue(sound.soundID != UInt32.max, "Sound was not initialized.")
+        } catch {
+            didThrowError = true
+            print("\(error)")
+        }
+        
+        XCTAssertTrue(didThrowError, "Opening non-sound file failed to throw error.")
+    }
 }
