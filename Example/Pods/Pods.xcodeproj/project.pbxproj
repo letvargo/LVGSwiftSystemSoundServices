@@ -10,9 +10,12 @@
 		02B32B49891B2809BC0B86FBFC9380A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		0C39536DD048099550D6E9206F6250F3 /* Pods-LVGSwiftSystemSoundServices_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEBF20BE060CA13818819A52ED7FCF /* Pods-LVGSwiftSystemSoundServices_Tests-dummy.m */; };
 		20615438D9B39C38365E22FE5CB710C5 /* Pods-LVGSwiftSystemSoundServices_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FFB1D287BAF53C944DC3EC15E6E9F42 /* Pods-LVGSwiftSystemSoundServices_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2DD4FD1F890ED84D7EF9DDB82C46DA44 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A2F8A3CE58D0FFCFEA1FD4664C9F21 /* ReplaceMe.swift */; };
 		42BD9EF1C8014EAF102766C3AB4A9F03 /* LVGSwiftSystemSoundServices-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AC1576F86660E2CC1402186D53240B5C /* LVGSwiftSystemSoundServices-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		480F0F00332877BF6613C3700357CFE8 /* LVGSwiftSystemSoundServices-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81792F200EA5D1CADDE8FB9C0BB18B83 /* LVGSwiftSystemSoundServices-dummy.m */; };
+		578EA02E1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
+		578EA02F1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
+		578EA0301CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
+		578EA0311CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */; };
 		92A9BB829895F3031B04AA371292F86A /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBED4CEF5DCB12A89355D0F680C7890 /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m */; };
 		A3E211843F9F8645A1739243CFDF1508 /* LVGSwiftSystemSoundServices.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAAD530575AED4EEF50E6E9617A2AFA9 /* LVGSwiftSystemSoundServices.bundle */; };
 		A4491CCEDFC2BA3BC82BD5708B9F30F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
@@ -54,11 +57,12 @@
 		3AEEBF20BE060CA13818819A52ED7FCF /* Pods-LVGSwiftSystemSoundServices_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LVGSwiftSystemSoundServices_Tests-dummy.m"; sourceTree = "<group>"; };
 		3BC3464D2AE21A81FA38CEEE4975276D /* Pods-LVGSwiftSystemSoundServices_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LVGSwiftSystemSoundServices_Example-resources.sh"; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		41A2F8A3CE58D0FFCFEA1FD4664C9F21 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		44F4898D5A77BF5E9A95F85D537F80D8 /* Pods-LVGSwiftSystemSoundServices_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LVGSwiftSystemSoundServices_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		4D06AC022F434A166110101D9B0AF645 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FBED4CEF5DCB12A89355D0F680C7890 /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LVGSwiftSystemSoundServices_Example-dummy.m"; sourceTree = "<group>"; };
 		56479ACBE98405D514BBC94003116CF8 /* Pods-LVGSwiftSystemSoundServices_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LVGSwiftSystemSoundServices_Example.release.xcconfig"; sourceTree = "<group>"; };
+		578EA02C1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h"; sourceTree = "<group>"; };
+		578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LVGSwiftSystemSoundServices.swift; sourceTree = "<group>"; };
 		6D3E258356A7265B385A5A4A38ED1A67 /* LVGSwiftSystemSoundServices.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LVGSwiftSystemSoundServices.xcconfig; sourceTree = "<group>"; };
 		7297B17423F3CDC27B35193CB5A4C0BF /* Pods-LVGSwiftSystemSoundServices_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LVGSwiftSystemSoundServices_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		73A1AE8230DFBEDC49AC7EB03FCB6456 /* Pods-LVGSwiftSystemSoundServices_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LVGSwiftSystemSoundServices_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,7 +203,8 @@
 		F05E950B16405D7C68EB7D9B3767C7A2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				41A2F8A3CE58D0FFCFEA1FD4664C9F21 /* ReplaceMe.swift */,
+				578EA02D1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift */,
+				578EA02C1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -354,7 +359,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -400,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578EA0311CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				0C39536DD048099550D6E9206F6250F3 /* Pods-LVGSwiftSystemSoundServices_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578EA0301CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				92A9BB829895F3031B04AA371292F86A /* Pods-LVGSwiftSystemSoundServices_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578EA02F1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,8 +431,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578EA02E1CC0B0DD00B93161 /* LVGSwiftSystemSoundServices.swift in Sources */,
 				480F0F00332877BF6613C3700357CFE8 /* LVGSwiftSystemSoundServices-dummy.m in Sources */,
-				2DD4FD1F890ED84D7EF9DDB82C46DA44 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00EF11473487F676B0B4E9200F63E7D6 /* Pods-LVGSwiftSystemSoundServices_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -549,10 +558,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6D3E258356A7265B385A5A4A38ED1A67 /* LVGSwiftSystemSoundServices.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = LVGSwiftSystemSoundServices;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "../../Pod/Classes/LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -601,6 +614,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56479ACBE98405D514BBC94003116CF8 /* Pods-LVGSwiftSystemSoundServices_Example.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -661,10 +675,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6D3E258356A7265B385A5A4A38ED1A67 /* LVGSwiftSystemSoundServices.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = LVGSwiftSystemSoundServices;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "../../Pod/Classes/LVGSwiftSystemSoundServices-LVGSwiftSystemSoundServices-Bridging-Header.h";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -673,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73A1AE8230DFBEDC49AC7EB03FCB6456 /* Pods-LVGSwiftSystemSoundServices_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -705,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E697E27FA61FC5CCD96ACEBCC29C761D /* Pods-LVGSwiftSystemSoundServices_Example.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
