@@ -58,7 +58,7 @@ extension OSStatus: CodeStringConvertible { }
 
 extension UInt32: CodeStringConvertible { }
 
-public protocol CodedPropertyType: RawRepresentable, CustomStringConvertible {
+public protocol CodedPropertyType: CustomStringConvertible {
     var code: UInt32 { get }
     var domain: String { get }
     var shortDescription: String { get }
@@ -68,17 +68,13 @@ extension CodedPropertyType {
     
     public var description: String {
         
-        var base = "\(self.domain): \(self.shortDescription)\n\tCode: \(self.code)"
+        var base = "\(self.domain): \(self.shortDescription).\n\tCode: \(self.code)"
         
         if let codeString = self.code.codeString {
             base.appendContentsOf(" ('\(codeString)')")
         }
         
         return base
-    }
-    
-    public var rawValue: UInt32 {
-        return self.code
     }
 }
 
