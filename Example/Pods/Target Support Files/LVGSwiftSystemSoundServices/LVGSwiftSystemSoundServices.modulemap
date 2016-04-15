@@ -1,0 +1,6 @@
+framework module LVGSwiftSystemSoundServices {
+  umbrella header "LVGSwiftSystemSoundServices-umbrella.h"
+
+  export *
+  module * { export * }
+}

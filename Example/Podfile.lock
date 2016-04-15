@@ -1,0 +1,14 @@
+PODS:
+  - LVGSwiftSystemSoundServices (0.1.0)
+
+DEPENDENCIES:
+  - LVGSwiftSystemSoundServices (from `../`)
+
+EXTERNAL SOURCES:
+  LVGSwiftSystemSoundServices:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LVGSwiftSystemSoundServices: 0f546ff29f35f3f53efe8852316a69075b72e803
+
+COCOAPODS: 0.39.0

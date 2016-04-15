@@ -1,0 +1,6 @@
+framework module Pods_LVGSwiftSystemSoundServices_Example {
+  umbrella header "Pods-LVGSwiftSystemSoundServices_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
