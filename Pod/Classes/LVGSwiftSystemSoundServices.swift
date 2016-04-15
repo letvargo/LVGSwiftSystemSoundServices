@@ -110,6 +110,10 @@ extension SystemSoundType {
  
  `var code: OSSstatus { get }`
  
+ `var description: String { get }`
+ 
+ A formatted `String` description of the error. Required by `CustomStringRepresentable`.
+ 
  The result code associated with the error.
  
  **Initializers:**
@@ -220,6 +224,79 @@ public enum SystemSoundError: CodedErrorType {
             
         default:
             self = .Undefined(code: status, message: message)
+        }
+    }
+}
+
+// MARK: SystemSoundProperty - Definition
+
+/**
+ 
+ An enum with cases that represent a System Sound Services Property.
+ 
+ Each case has a `code` property equivalent to the `AudioServicesPropertyID`
+ that System Sound Services uses to identify properties.
+ 
+ **Cases and code values:**
+ 
+ `case IsUISound = kAudioServicesPropertyIsUISound`
+ 
+ `case CompletePlaybackIfAppDies = kAudioServicesPropertyCompletePlaybackIfAppDies`
+ 
+ **Properties:**
+ 
+ `var domain: String { get }`
+ 
+ Returns "System Sound Services Property" for all cases.
+ 
+ `var shortDescription: String { get }`
+ 
+ A short description of the property.
+ 
+ `var description: String { get }`
+ 
+ A formatted `String` description of the property. Required by `CustomStringRepresentable`.
+ 
+ `var code: AudioServicesPropertyID { get }`
+ 
+ The `AudioServicesPropertyID` associated with the property.
+ 
+ **Conforms to:**
+ 
+ `CodedPropertyType`
+ 
+ */
+
+public enum SystemSoundProperty: CodedPropertyType {
+    
+    case IsUISound
+    case CompletePlaybackIfAppDies
+    
+    /// Returns "System Sound Services Property" for all cases.
+    
+    public var domain: String {
+        return "System Sound Services Property"
+    }
+    
+    /// A short description of the error.
+    
+    public var shortDescription: String {
+        switch self {
+        case .CompletePlaybackIfAppDies:
+            return "Complete playback if App dies"
+        case .IsUISound:
+            return "Is UI Sound"
+        }
+    }
+    
+    /// The `AudioServicesPropertyID` associated with the property.
+    
+    public var code: AudioServicesPropertyID {
+        switch self {
+        case .IsUISound:
+            return kAudioServicesPropertyIsUISound
+        case .CompletePlaybackIfAppDies:
+            return kAudioServicesPropertyCompletePlaybackIfAppDies
         }
     }
 }
