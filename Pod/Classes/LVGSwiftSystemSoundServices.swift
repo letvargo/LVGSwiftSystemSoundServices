@@ -381,4 +381,71 @@ extension SystemSoundType {
     public func propertyIsWritable(property: SystemSoundProperty) throws -> Bool {
         return try self.propertyInfo(property).writable
     }
+    
+    /**
+     
+     Gets the value of the `.IsUISound` property.
+     
+     If `true`, the system sound respects the user setting in the Sound Effects
+     preference and the sound will be silent when the user turns off sound effects.
+     
+     The default value is `true`.
+     
+     - throws: `SystemSoundError`
+     
+     - returns: A `Bool` that indicates whether or not the sound will play
+     when the user has turned of sound effects in the Sound Effects preferences.
+     
+     */
+    
+    public func isUISound() throws -> Bool {
+        
+        let specifierSize = UInt32(sizeofValue(self.soundID))
+        
+        var size = try self.propertySize(.IsUISound)
+        var result: UInt32 = 0
+        
+        try Error.check(
+            AudioServicesGetProperty(
+                SystemSoundProperty.IsUISound.code,
+                specifierSize,
+                [self.soundID],
+                &size,
+                &result ),
+            message: "An error occurred while getting the 'isUISound' property.")
+        
+        return result == 1
+    }
+    
+    /**
+    
+     Sets the value of the `.IsUISound` property.
+     
+     If `true`, the system sound respects the user setting in the Sound Effects
+     preference and the sound will be silent when the user turns off sound effects.
+     
+     The default value is `true`.
+     
+     - parameter value: The `Bool` value that is to be set.
+     
+     - throws: `SystemSoundError`
+    
+    */
+    
+    public func isUISound(value: Bool) throws {
+        
+        let specifierSize = UInt32(sizeofValue(self.soundID))
+        
+        let size = try self.propertySize(.IsUISound)
+        let isUISound: UInt32 = value ? 1 : 0
+        
+        try Error.check(
+            AudioServicesSetProperty(
+                SystemSoundProperty.IsUISound.code,
+                specifierSize,
+                [self.soundID],
+                size,
+                [isUISound] ),
+            message: "An error occurred while setting the 'isUISound' property.")
+    }
 }
