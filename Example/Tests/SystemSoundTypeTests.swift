@@ -151,4 +151,60 @@ class SystemSoundTypeTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testCompletePlaybackIfAppDies() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let completes = try sound.completePlaybackIfAppDies()
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _completes = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            
+            XCTAssertTrue(result == 0 && completes == (_completes == 1), "completePlaybackIfAppDies property failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
+        }
+    }
+    
+    func testCompletePlaybackIfAppDiesSetsFalse() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            try sound.completePlaybackIfAppDies(false)
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _completes = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            
+            print(_completes)
+            
+            XCTAssertTrue(result == 0 && _completes == 0, "completePlaybackIfAppDies(false) failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
+        }
+    }
+    
+    func testCompletePlaybackIfAppDiesSetsTrue() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            try sound.completePlaybackIfAppDies(true)
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _completes = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            
+            XCTAssertTrue(result == 0 && _completes == 1, "completePlaybackIfAppDies(true) failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
+        }
+    }
 }

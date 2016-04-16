@@ -448,4 +448,68 @@ extension SystemSoundType {
                 [isUISound] ),
             message: "An error occurred while setting the 'isUISound' property.")
     }
+    
+    /**
+     
+     Gets the value of the `.CompletePlaybackIfAppDies` property.
+     
+     If `true`, the system sound will finish playing even if the application
+     dies unexpectedly.
+     
+     The default value is `true`.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func completePlaybackIfAppDies() throws -> Bool {
+        
+        let specifierSize = UInt32(sizeofValue(self.soundID))
+        
+        var size = try self.propertySize(.CompletePlaybackIfAppDies)
+        var result: UInt32 = 0
+        
+        try Error.check(
+            AudioServicesGetProperty(
+                SystemSoundProperty.CompletePlaybackIfAppDies.code,
+                specifierSize,
+                [self.soundID],
+                &size,
+                &result ),
+            message: "An error occurred while getting the 'completePlaybackIfAppDies' property.")
+        
+        return result == 1
+    }
+    
+    /**
+     
+     Sets the value of the `.CompletePlaybackIfAppDies` property.
+     
+     If `true`, the system sound will finish playing even if the application
+     dies unexpectedly.
+     
+     The default value is `true`.
+     
+     - parameter value: The `Bool` value that is to be set.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func completePlaybackIfAppDies(value: Bool) throws {
+        
+        let specifierSize = UInt32(sizeofValue(self.soundID))
+        
+        let size = try self.propertySize(.CompletePlaybackIfAppDies)
+        let completePlayback: UInt32 = value ? 1 : 0
+        
+        try Error.check(
+            AudioServicesSetProperty(
+                SystemSoundProperty.CompletePlaybackIfAppDies.code,
+                specifierSize,
+                [self.soundID],
+                size,
+                [completePlayback] ),
+            message: "An error occurred while setting the 'completePlaybackIfAppDies' property.")
+    }
 }
