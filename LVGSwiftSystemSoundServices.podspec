@@ -17,14 +17,14 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-  'LVGSwiftSystemSoundServices wraps Audio Toolbox's System Sound Services in an easy to use set of Swift functions. It includes a protocol, SystemSoundType, that lets you easily add system sound functionality to any object. It also includes the SystemSound class that loads and plays system sounds.'
+  LVGSwiftSystemSoundServices wraps Audio Toolbox's System Sound Services in an easy to use set of Swift functions. It includes a protocol, SystemSoundType, that lets you easily add system sound functionality to any object. It also includes the SystemSound class that loads and plays system sounds.
                        DESC
 
   s.homepage         = "https://github.com/letvargo/LVGSwiftSystemSoundServices"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Aaron Rasmussen" => "letvargo@gmail.com" }
-  s.source           = { :git => "https://github.com/letvargo/LVGSwiftSystemSoundServices.git", :tag => s.version.to_s }
+  s.source           = { :git => '/Users/doofnugget/Documents/projects/Podspecs/LVGSwiftSystemSoundServices/', :tag => '0.1.0' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
