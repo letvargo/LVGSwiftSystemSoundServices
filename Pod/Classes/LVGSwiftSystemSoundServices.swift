@@ -299,4 +299,86 @@ public enum SystemSoundProperty: CodedPropertyType {
             return kAudioServicesPropertyCompletePlaybackIfAppDies
         }
     }
+    
+    /// Initializes a `SystemSoundProperty` from an `AudioServicesPropertyID`
+    
+    public init?(code: AudioServicesPropertyID) {
+        switch code {
+        case kAudioServicesPropertyIsUISound:
+            self = .IsUISound
+        case kAudioServicesPropertyCompletePlaybackIfAppDies:
+            self = .CompletePlaybackIfAppDies
+        default:
+            return nil
+        }
+    }
+}
+
+extension SystemSoundType {
+
+    public typealias PropertyInfo = (size: UInt32, writable: Bool)
+    
+    /**
+     
+     Gets the property info for the property.
+     
+     - parameter property: The property to check.
+     
+     - returns: `PropertyInfo` - a `(size: UInt32, writable: Bool)` tuple
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func propertyInfo(property: SystemSoundProperty) throws -> PropertyInfo {
+        var size: UInt32 = UInt32.max
+        var writable: DarwinBoolean = false
+        
+        try Error.check(
+            AudioServicesGetPropertyInfo(
+                property.code,
+                UInt32(sizeofValue(self.soundID)),
+                [self.soundID],
+                &size,
+                &writable),
+            message: "An error occurred while getting the property info for property '\(property.shortDescription)'.")
+        
+        return (size, Bool(writable))
+    }
+    
+    /**
+     
+     Obtains the size of the property.
+     
+     This is the equivalent of calling `self.propertyInfo(property).size`
+     
+     - parameter property: The property to check.
+     
+     - returns: `UInt32`
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func propertySize(property: SystemSoundProperty) throws -> UInt32 {
+        return try self.propertyInfo(property).size
+    }
+    
+    /**
+    
+     Checks to see if the property is writable.
+     
+     This is the equivalent of calling `self.propertyInfo(property).writable`
+     
+     - parameter property: The property to check.
+     
+     - returns: `Bool`
+     
+     - throws: `SystemSoundError`
+    
+    */
+    
+    public func propertyIsWritable(property: SystemSoundProperty) throws -> Bool {
+        return try self.propertyInfo(property).writable
+    }
 }

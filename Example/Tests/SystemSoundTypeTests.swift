@@ -52,4 +52,48 @@ class SystemSoundTypeTests: XCTestCase {
         
         XCTAssertTrue(didThrowError, "Opening non-sound file failed to throw error.")
     }
+    
+    func testPropertyInfoSize() {
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let propInfo = try sound.propertyInfo(.IsUISound)
+            
+            XCTAssertTrue(propInfo.size != UInt32.max, "Did not obtain property size.")
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func testPropertyInfoWritable() {
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let propInfo = try sound.propertyInfo(.IsUISound)
+            
+            XCTAssertTrue(propInfo.writable, "Did not determine that property is writable.")
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func testPropertySize() {
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let size = try sound.propertySize(.IsUISound)
+            
+            XCTAssertTrue(size != UInt32.max, "Did not determine that property is writable.")
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func testPropertyIsWritable() {
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let writable = try sound.propertyIsWritable(.IsUISound)
+            
+            XCTAssertTrue(writable, "Did not determine that property is writable.")
+        } catch {
+            print("\(error)")
+        }
+    }
 }

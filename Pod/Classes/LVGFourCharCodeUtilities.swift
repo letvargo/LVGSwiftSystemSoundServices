@@ -58,10 +58,11 @@ extension OSStatus: CodeStringConvertible { }
 
 extension UInt32: CodeStringConvertible { }
 
-public protocol CodedPropertyType: CustomStringConvertible {
+public protocol CodedPropertyType: CustomStringConvertible, RawRepresentable {
     var code: UInt32 { get }
     var domain: String { get }
     var shortDescription: String { get }
+    init?(code: UInt32)
 }
 
 extension CodedPropertyType {
@@ -75,6 +76,14 @@ extension CodedPropertyType {
         }
         
         return base
+    }
+    
+    public var rawValue: UInt32 {
+        return self.code
+    }
+    
+    public init?(rawValue: UInt32) {
+        self.init(code: rawValue)
     }
 }
 
