@@ -8,6 +8,7 @@
 
 import XCTest
 import LVGSwiftSystemSoundServices
+import AudioToolbox
 
 class SystemSoundTypeTests: XCTestCase {
 
@@ -94,6 +95,60 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(writable, "Did not determine that property is writable.")
         } catch {
             print("\(error)")
+        }
+    }
+    
+    func testIsUISoundGetter() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            let isUISound = try sound.isUISound()
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _isUISound = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            
+            XCTAssertTrue(result == 0 && isUISound == (_isUISound == 1), "isUISound property failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
+        }
+    }
+    
+    func testIsUISoundSetsFalse() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            try sound.isUISound(false)
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _isUISound = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            
+            XCTAssertTrue(result == 0 && _isUISound == 0, "isUISound(false) failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
+        }
+    }
+    
+    func testIsUISoundSetsTrue() {
+        
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            try sound.isUISound(true)
+            
+            var size = UInt32(sizeof(UInt32.self))
+            var _isUISound = UInt32.max
+            
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            
+            XCTAssertTrue(result == 0 && _isUISound == 1, "isUISound(true) failed.")
+        } catch {
+            print("\(error)")
+            XCTFail()
         }
     }
 }
