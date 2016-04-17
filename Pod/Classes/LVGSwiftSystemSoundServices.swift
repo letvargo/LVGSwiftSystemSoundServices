@@ -68,6 +68,57 @@ extension SystemSoundType {
     
     /**
      
+     Dispose of the system sound assigned to the `soundID` property.
+     
+     */
+    
+    public func dispose() throws {
+        try Error.check(
+            AudioServicesDisposeSystemSoundID(self.soundID),
+            message: "An error occurred while disposing of the SystemSoundID." )
+    }
+    
+    /**
+     
+     Play the system sound assigned to the `soundID` property.
+     
+     */
+    
+    public func play() {
+        AudioServicesPlaySystemSound(self.soundID)
+    }
+    
+    /**
+     
+     Play the system sound assigned to the `soundID` property as an alert.
+     
+     On `iOS` this may cause the device to vibrate. The actual sound played
+     is dependent on the device.
+     
+     On `OS X` this may cause the screen to flash.
+     
+     */
+    
+    public func playAsAlert() {
+        AudioServicesPlayAlertSound(self.soundID)
+    }
+    
+    #if os(OSX)
+    
+        /**
+     
+         A class function for playing the system-defined alert sound on OS X.
+     
+         */
+    
+        static public func playSystemAlert() {
+            AudioServicesPlayAlertSound(kSystemSoundID_UserPreferredAlert)
+        }
+    
+    #endif
+    
+    /**
+     
      Adds a completion handler that will be called when the `SystemSound`
      finishes playing.
      

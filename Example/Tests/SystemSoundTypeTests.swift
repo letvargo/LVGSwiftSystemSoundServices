@@ -18,25 +18,31 @@ class SystemSoundTypeTests: XCTestCase {
         var soundID: SystemSoundID
     }
     
+    var sound: MySystemSound!
+    
     let frog = NSURL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        do {
+            sound = MySystemSound(soundID: try MySystemSound.open(frog))
+        } catch {
+            print("\(error)")
+        }
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-    }
-
-    func testOpenURLDidChangeSoundID() {
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
-            XCTAssertTrue(sound.soundID != UInt32.max, "Sound was not initialized.")
+            try sound.dispose()
         } catch {
             print("\(error)")
         }
+    }
+
+    func testOpenURLDidChangeSoundID() {
+        XCTAssertTrue(sound.soundID != UInt32.max, "Sound was not initialized.")
     }
     
     func testOpenURLThrowsErrorWithNonSoundFile() {
@@ -56,45 +62,45 @@ class SystemSoundTypeTests: XCTestCase {
     
     func testPropertyInfoSize() {
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             let propInfo = try sound.propertyInfo(.IsUISound)
             
             XCTAssertTrue(propInfo.size != UInt32.max, "Did not obtain property size.")
         } catch {
             print("\(error)")
+            XCTFail("Error thrown.")
         }
     }
     
     func testPropertyInfoWritable() {
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             let propInfo = try sound.propertyInfo(.IsUISound)
             
             XCTAssertTrue(propInfo.writable, "Did not determine that property is writable.")
         } catch {
             print("\(error)")
+            XCTFail("Error thrown.")
         }
     }
     
     func testPropertySize() {
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             let size = try sound.propertySize(.IsUISound)
             
             XCTAssertTrue(size != UInt32.max, "Did not determine that property is writable.")
         } catch {
             print("\(error)")
+            XCTFail("Error thrown.")
         }
     }
     
     func testPropertyIsWritable() {
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             let writable = try sound.propertyIsWritable(.IsUISound)
             
             XCTAssertTrue(writable, "Did not determine that property is writable.")
         } catch {
             print("\(error)")
+            XCTFail("Error thrown.")
         }
     }
     
@@ -112,7 +118,7 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(result == 0 && isUISound == (_isUISound == 1), "isUISound property failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
         }
     }
     
@@ -130,14 +136,13 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(result == 0 && _isUISound == 0, "isUISound(false) failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
         }
     }
     
     func testIsUISoundSetsTrue() {
         
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             try sound.isUISound(true)
             
             var size = UInt32(sizeof(UInt32.self))
@@ -148,14 +153,13 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(result == 0 && _isUISound == 1, "isUISound(true) failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
         }
     }
     
     func testCompletePlaybackIfAppDies() {
         
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             let completes = try sound.completePlaybackIfAppDies()
             
             var size = UInt32(sizeof(UInt32.self))
@@ -166,14 +170,13 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(result == 0 && completes == (_completes == 1), "completePlaybackIfAppDies property failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
         }
     }
     
     func testCompletePlaybackIfAppDiesSetsFalse() {
         
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             try sound.completePlaybackIfAppDies(false)
             
             var size = UInt32(sizeof(UInt32.self))
@@ -181,19 +184,16 @@ class SystemSoundTypeTests: XCTestCase {
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
             
-            print(_completes)
-            
             XCTAssertTrue(result == 0 && _completes == 0, "completePlaybackIfAppDies(false) failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
         }
     }
     
     func testCompletePlaybackIfAppDiesSetsTrue() {
         
         do {
-            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
             try sound.completePlaybackIfAppDies(true)
             
             var size = UInt32(sizeof(UInt32.self))
@@ -204,7 +204,16 @@ class SystemSoundTypeTests: XCTestCase {
             XCTAssertTrue(result == 0 && _completes == 1, "completePlaybackIfAppDies(true) failed.")
         } catch {
             print("\(error)")
-            XCTFail()
+            XCTFail("Error thrown.")
+        }
+    }
+    
+    func testDispose() {
+        
+        do {
+            try sound.dispose()
+        } catch {
+            XCTFail("Error thrown.")
         }
     }
 }
