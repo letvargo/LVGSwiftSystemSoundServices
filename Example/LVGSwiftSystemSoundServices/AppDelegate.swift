@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import LVGSwiftSystemSoundServices
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    typealias SystemSoundID = UInt32
+    
+    struct MySystemSound: SystemSoundType {
+        var soundID: SystemSoundID
+    }
+    
+    let frog = NSURL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        do {
+            let sound = MySystemSound(soundID: try MySystemSound.open(frog))
+            assert(sound.soundID != UInt32.max)
+            try sound.dispose()
+        } catch {
+            print("\(error)")
+        }
+        
         return true
     }
 
@@ -40,7 +57,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
