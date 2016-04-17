@@ -415,6 +415,8 @@ public enum SystemSoundProperty: CodedPropertyType {
     }
 }
 
+// MARK: SystemSoundType - Property getters and setters
+
 extension SystemSoundType {
 
     public typealias PropertyInfo = (size: UInt32, writable: Bool)
@@ -612,5 +614,170 @@ extension SystemSoundType {
                 size,
                 [completePlayback] ),
             message: "An error occurred while setting the 'completePlaybackIfAppDies' property.")
+    }
+}
+
+public protocol SystemSoundDelegate: class {
+    func didFinishPlaying(sound: SystemSound)
+}
+
+/**
+ 
+ A wrapper around AudioToolbox's SystemSoundID
+ 
+ **Conforms To:**
+ 
+ `SystemSoundType`
+ 
+ */
+
+public class SystemSound: SystemSoundType {
+    
+    /**
+     
+     A property for storying the `SystemSoundID`.
+     
+     */
+    
+    public let soundID: SystemSoundID
+    
+    private lazy var systemSoundCompletionProc: AudioServicesSystemSoundCompletionProc = {
+        
+        _, inClientData in
+        
+        let systemSound: SystemSound = bridgeTransfer(inClientData)
+        systemSound.delegate?.didFinishPlaying(systemSound)
+    }
+    
+    /**
+     
+     A `delegate` with a `didFinsishPlaying(_:)` function that is called
+     when the system sound finishes playing.
+     
+     - Important: Setting this property changes the completion handler
+     that is assigned to the `SystemSoundID`. Likewise, adding a
+     completion handler manually using
+     `addCompletion(inClientData:inCompletionRoutine:)` can result in
+     resetting the delegate property to `nil`. The following rules
+     define the relationship between the delegate property and the
+     completion handler:
+     
+     1. Setting this property to a `SystemDoundDelegate` object
+     removes any completion handler previously assigned to the
+     `SystemSoundID`.
+     2. Setting this property to `nil` removes any completion handler
+     previously assigned to the `SystemSoundID`.
+     3. Adding a completion handler using
+     `addCompletion(inClientData:inCompletionRoutine:)` will cause the
+     `delegate` property to be set to `nil`.
+     4. Removing a completion handler using `removeCompletion()` will cause
+     the `delegate` property to be set to `nil`.
+     
+     */
+    
+    public weak var delegate: SystemSoundDelegate? {
+        
+        didSet {
+            
+            do {
+                
+                try self.addCompletion(
+                    inClientData: UnsafeMutablePointer(bridgeRetained(self)),
+                    inCompletionRoutine: self.systemSoundCompletionProc )
+                
+            } catch {
+                
+                print("\(error)")
+            }
+        }
+        
+        willSet {
+            
+            if newValue == nil {
+                
+                self.removeCompletion()
+            }
+        }
+    }
+    
+    /**
+     
+     Initialize a `SystemSound` object using an `NSURL`.
+     
+     - parameter url: The url of the sound file that will be played.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public init(url: NSURL) throws {
+        self.soundID = try SystemSound.open(url)
+    }
+    
+    /**
+     
+     Adds a completion handler that will be called when the `SystemSound`
+     finishes playing.
+     
+     - important: This method also has the effect of setting the `delegate`
+     property to `nil`.
+     
+     - parameters:
+     - inRunLoop: The run-loop where the completion handler will be executed.
+     If this property is set to `nil`, the completion handler will be executed
+     in the current run-loop. The default value is `nil`.
+     - inRunLoopMode: The run-loop mode. Leave this property set to `nil` to
+     use the default run-loop mode. The default value is `nil`.
+     - inClientData: A pointer to a user-defined data object that is passed
+     to the completion handler for use during its execution.
+     - inCompletionRoutine: The completion handler.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func addCompletion(
+        inRunLoop: CFRunLoop? = nil,
+        inRunLoopMode: String? = nil,
+        inClientData: UnsafeMutablePointer<Void> = nil,
+        inCompletionRoutine: AudioServicesSystemSoundCompletionProc) throws {
+        
+        self.removeCompletion()
+        
+        try Error.check(
+            AudioServicesAddSystemSoundCompletion(
+                self.soundID,
+                inRunLoop,
+                inRunLoopMode,
+                inCompletionRoutine,
+                inClientData ),
+            message: "An error occurred while adding a completion handler to system sound." )
+        
+    }
+    
+    /**
+     
+     Remove any completion handler that may be assigned to the `SystemSoundID`.
+     
+     - Important: This method also has the effect of setting the `delegate`
+     property to `nil`.
+     
+     */
+    
+    public func removeCompletion() {
+        self.delegate = nil
+        AudioServicesRemoveSystemSoundCompletion(self.soundID)
+    }
+    
+    deinit {
+        
+        do {
+            
+            try self.dispose()
+            
+        } catch {
+            
+            print("\(error)")
+        }
     }
 }
