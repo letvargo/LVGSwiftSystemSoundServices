@@ -65,6 +65,56 @@ extension SystemSoundType {
         
         return soundID
     }
+    
+    /**
+     
+     Adds a completion handler that will be called when the `SystemSound`
+     finishes playing.
+     
+     - important: This method removes any previously assigned completion handler.
+     
+     - parameters:
+     - inRunLoop: The run-loop where the completion handler will be executed.
+     If this property is set to `nil`, the completion handler will be executed
+     in the current run-loop. The default value is `nil`.
+     - inRunLoopMode: The run-loop mode. Leave this property set to `nil` to
+     use the default run-loop mode. The default value is `nil`.
+     - inClientData: A pointer to a user-defined data object that is passed
+     to the completion handler for use during its execution.
+     - inCompletionRoutine: The completion handler.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    public func addCompletion(
+        inRunLoop: CFRunLoop? = nil,
+        inRunLoopMode: String? = nil,
+        inClientData: UnsafeMutablePointer<Void> = nil,
+        inCompletionRoutine: AudioServicesSystemSoundCompletionProc) throws {
+        
+        self.removeCompletion()
+        
+        try Error.check(
+            AudioServicesAddSystemSoundCompletion(
+                self.soundID,
+                inRunLoop,
+                inRunLoopMode,
+                inCompletionRoutine,
+                inClientData ),
+            message: "An error occurred while adding a completion handler to system sound." )
+        
+    }
+    
+    /**
+     
+     Remove any completion handler that may be assigned to the `SystemSoundID`.
+     
+     */
+    
+    public func removeCompletion() {
+        AudioServicesRemoveSystemSoundCompletion(self.soundID)
+    }
 }
 
 // MARK: SystemSoundError - Definition
