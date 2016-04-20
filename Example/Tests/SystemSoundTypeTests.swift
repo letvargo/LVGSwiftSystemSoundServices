@@ -292,7 +292,7 @@ class SystemSoundTypeTests: XCTestCase {
             try sound.addCompletion(inClientData: &data, inCompletionRoutine: callback)
             sound.play()
             
-            waitForExpectationsWithTimeout(10) {
+            waitForExpectationsWithTimeout(30) {
                 error in
                 if let error = error {
                     print("\(error)")
