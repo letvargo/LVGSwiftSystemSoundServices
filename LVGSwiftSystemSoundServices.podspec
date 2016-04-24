@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = 'Source/**/*'
   s.frameworks = 'AudioToolbox'
-  s.dependency 'LVGUtilities', '~> 0.1'
+  s.dependency 'LVGUtilities', '~> 0.1.2'
 end

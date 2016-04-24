@@ -8,6 +8,7 @@
 
 import XCTest
 import LVGSwiftSystemSoundServices
+import LVGUtilities
 import AudioToolbox
 
 class SystemSoundTypeTests: XCTestCase {

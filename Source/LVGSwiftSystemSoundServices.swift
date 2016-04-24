@@ -7,6 +7,7 @@
 //
 
 import AudioToolbox
+import LVGUtilities
 
 // MARK: SystemSoundType - Definition
 
@@ -326,6 +327,10 @@ public enum SystemSoundError: CodedErrorType {
         default:
             self = .Undefined(code: status, message: message)
         }
+    }
+    
+    public init?(rawValue: OSStatus) {
+        self.init(status: rawValue, message: "No message.")
     }
 }
 
