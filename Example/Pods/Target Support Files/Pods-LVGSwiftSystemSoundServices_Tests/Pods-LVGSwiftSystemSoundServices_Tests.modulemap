@@ -1,6 +1,0 @@
-framework module Pods_LVGSwiftSystemSoundServices_Tests {
-  umbrella header "Pods-LVGSwiftSystemSoundServices_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
