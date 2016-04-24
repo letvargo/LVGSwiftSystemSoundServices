@@ -3,7 +3,6 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
-cache: cocoapods
 podfile: Tests/Podfile
 before_install:
 - gem install cocoapods -v 1.0.0.beta.8 # Since Travis is not always on latest version
