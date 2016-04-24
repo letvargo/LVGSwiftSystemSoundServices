@@ -303,6 +303,7 @@ class SystemSoundTypeTests: XCTestCase {
         } catch {
             XCTFail("Error thrown:\n\(error)")
         }
+        
     }
     
     // TODO: Figure out how to test alert playback methods
