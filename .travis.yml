@@ -12,3 +12,4 @@ script:
 - open -b com.apple.iphonesimulator
 - set -o pipefail && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-iOS -sdk iphonesimulator | xcpretty
 - set -o pipefail && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-OSX -sdk macosx | xcpretty
+- pod _1.0.0.beta.8_ lib lint
