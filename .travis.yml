@@ -10,4 +10,5 @@ before_install:
 osx_image: xcode7.3
 script:
 - open -b com.apple.iphonesimulator
-- set -o pipefail && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-iOS -sdk iphonesimulator | xcpretty && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-OSX -sdk macosx | xcpretty
+- set -o pipefail && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-iOS -sdk iphonesimulator | xcpretty
+- set -o pipefail && xcodebuild test -workspace Tests/Tests.xcworkspace -scheme Tests-OSX -sdk macosx | xcpretty
