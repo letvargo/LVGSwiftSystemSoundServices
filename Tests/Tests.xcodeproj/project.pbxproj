@@ -9,19 +9,22 @@
 /* Begin PBXBuildFile section */
 		041EB32270228B2164392226 /* Pods_Tests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E42C51DF42816C11B77A69C /* Pods_Tests_iOS.framework */; };
 		37127532D0196C1CBF6CB29A /* Pods_Tests_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658CB4190D54C6F64B286368 /* Pods_Tests_OSX.framework */; };
-		579F54B81CCC681900B95C57 /* SystemSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579F54B71CCC681900B95C57 /* SystemSoundTests.swift */; };
-		579F54B91CCC681900B95C57 /* SystemSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579F54B71CCC681900B95C57 /* SystemSoundTests.swift */; };
+		5721D3A41CD4E3780034987E /* SystemSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721D3A31CD4E3780034987E /* SystemSoundTests.swift */; };
+		5721D3A51CD4E3780034987E /* SystemSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721D3A31CD4E3780034987E /* SystemSoundTests.swift */; };
+		579F54B81CCC681900B95C57 /* SystemSoundTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579F54B71CCC681900B95C57 /* SystemSoundTypeTests.swift */; };
+		579F54B91CCC681900B95C57 /* SystemSoundTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579F54B71CCC681900B95C57 /* SystemSoundTypeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4E42C51DF42816C11B77A69C /* Pods_Tests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6DBA5985D381F0B554C9F7 /* Pods-Tests-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		55ECC77198516309B0191E3F /* Pods-Tests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		5721D3A31CD4E3780034987E /* SystemSoundTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemSoundTests.swift; path = TestFiles/SystemSoundTests.swift; sourceTree = "<group>"; };
 		579F54A11CCC672500B95C57 /* Tests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		579F54A61CCC672500B95C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		579F54AE1CCC673300B95C57 /* Tests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		579F54B21CCC673300B95C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		579F54B71CCC681900B95C57 /* SystemSoundTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemSoundTests.swift; path = TestFiles/SystemSoundTests.swift; sourceTree = "<group>"; };
+		579F54B71CCC681900B95C57 /* SystemSoundTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemSoundTypeTests.swift; path = TestFiles/SystemSoundTypeTests.swift; sourceTree = "<group>"; };
 		658CB4190D54C6F64B286368 /* Pods_Tests_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B696334F695C773FDFC614 /* Pods-Tests-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-OSX/Pods-Tests-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 		F3B1B24B124B23C8C838F3D3 /* Pods-Tests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-iOS/Pods-Tests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,7 +99,8 @@
 		579F54B61CCC678B00B95C57 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				579F54B71CCC681900B95C57 /* SystemSoundTests.swift */,
+				579F54B71CCC681900B95C57 /* SystemSoundTypeTests.swift */,
+				5721D3A31CD4E3780034987E /* SystemSoundTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -305,7 +309,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				579F54B81CCC681900B95C57 /* SystemSoundTests.swift in Sources */,
+				579F54B81CCC681900B95C57 /* SystemSoundTypeTests.swift in Sources */,
+				5721D3A41CD4E3780034987E /* SystemSoundTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +318,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				579F54B91CCC681900B95C57 /* SystemSoundTests.swift in Sources */,
+				5721D3A51CD4E3780034987E /* SystemSoundTests.swift in Sources */,
+				579F54B91CCC681900B95C57 /* SystemSoundTypeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,12 +329,14 @@
 		579F549B1CCC671500B95C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		579F549C1CCC671500B95C57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
