@@ -72,7 +72,7 @@ extension SystemSoundType {
      */
     
     public func addCompletion(
-        inRunLoop: CFRunLoop? = nil,
+        inRunLoop: NSRunLoop? = nil,
         inRunLoopMode: String? = nil,
         inClientData: UnsafeMutablePointer<Void> = nil,
         inCompletionRoutine: AudioServicesSystemSoundCompletionProc) throws {
@@ -82,7 +82,7 @@ extension SystemSoundType {
         try Error.check(
             AudioServicesAddSystemSoundCompletion(
                 self.soundID,
-                inRunLoop,
+                inRunLoop?.getCFRunLoop(),
                 inRunLoopMode,
                 inCompletionRoutine,
                 inClientData ),
