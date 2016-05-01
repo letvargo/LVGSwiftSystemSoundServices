@@ -49,7 +49,7 @@ public class SystemSound {
                 do {
                 
                     try self.sound.addCompletion(
-                        inClientData: UnsafeMutablePointer(bridgeRetained(self)),
+                        inClientData: bridgeRetained(self),
                         inCompletionRoutine: systemSoundCompletionProc)
                     
                 } catch {
