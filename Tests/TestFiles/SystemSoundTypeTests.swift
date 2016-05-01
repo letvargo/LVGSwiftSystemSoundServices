@@ -13,10 +13,6 @@ import AudioToolbox
 
 class SystemSoundTypeTests: XCTestCase {
 
-    struct MySystemSound: SystemSoundType {
-        let soundID: SystemSoundID
-    }
-
     struct ClientData {
         var expectation: XCTestExpectation
         var wasCalled = false
@@ -34,10 +30,10 @@ class SystemSoundTypeTests: XCTestCase {
     
     let frog = NSURL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
     
-    var sound: MySystemSound!
+    var sound: SystemSoundID!
     
     override func setUp() {
-        self.sound = MySystemSound(soundID: try! SystemSoundID(url: frog))
+        self.sound = try? SystemSoundID(url: frog)
     }
     
     override func tearDown() {
@@ -47,7 +43,7 @@ class SystemSoundTypeTests: XCTestCase {
 
     func testOpenURLDidChangeSoundID() {
         
-        let sound = MySystemSound(soundID: try! SystemSoundID(url: frog))
+        let sound = try! SystemSoundID(url: frog)
         
         defer {
             try! sound.dispose()
@@ -61,7 +57,7 @@ class SystemSoundTypeTests: XCTestCase {
         var didThrowError = false
         
         do {
-            let sound = MySystemSound(soundID: try SystemSoundID(url: NSURL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png")))
+            let sound = try SystemSoundID(url: NSURL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png"))
             
             defer {
                 try! sound.dispose()
@@ -231,7 +227,7 @@ class SystemSoundTypeTests: XCTestCase {
     func testDispose() {
         
         do {
-            let sound = MySystemSound(soundID: try SystemSoundID(url: frog))
+            let sound = try SystemSoundID(url: frog)
             try sound.dispose()
         } catch {
             XCTFail("Error thrown:\n\(error)")

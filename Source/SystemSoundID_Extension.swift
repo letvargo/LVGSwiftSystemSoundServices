@@ -24,3 +24,10 @@ extension SystemSoundID {
         self.init(soundID)
     }
 }
+
+extension SystemSoundID: SystemSoundType {
+
+    public var soundID: SystemSoundID {
+        return self
+    }
+}
