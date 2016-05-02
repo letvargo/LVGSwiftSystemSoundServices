@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/letvargo/Specs.git'
 
 use_frameworks!
 
