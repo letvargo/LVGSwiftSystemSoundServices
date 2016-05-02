@@ -5,8 +5,8 @@
 language: objective-c
 podfile: Tests/Podfile
 before_install:
-- gem install cocoapods -v 1.0.0.beta.8 # Since Travis is not always on latest version
-- pod _1.0.0.beta.8_ install --project-directory=Tests
+- gem install cocoapods -v 1.0.0.rc.1 # Since Travis is not always on latest version
+- pod _1.0.0.rc.1_ install --project-directory=Tests
 osx_image: xcode7.3
 script:
 - open -b com.apple.iphonesimulator
