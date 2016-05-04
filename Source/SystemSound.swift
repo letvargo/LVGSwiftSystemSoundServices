@@ -100,7 +100,7 @@ public class SystemSound {
     
     /// Cause the phone to vibrate.
     public static func vibrate() {
-        _SystemSound.vibrate()
+        SystemSoundID.vibrate()
     }
     
     #endif
@@ -109,12 +109,12 @@ public class SystemSound {
     
     /// Play the system-defined alert sound on OS X.
     public static func playSystemAlert() {
-        _SystemSound.playSystemAlert()
+        SystemSoundID.playSystemAlert()
     }
     
     /// Flash the screen.
     public static func flashScreen() {
-        _SystemSound.flashScreen()
+        SystemSoundID.flashScreen()
     }
     
     #endif
