@@ -28,28 +28,30 @@ import LVGUtilities
 
 public enum SystemSoundProperty: CodedPropertyType {
     
+    /// The equivalent of the property code `kAudioServicesPropertyIsUISound`.
     case IsUISound
+    
+    /// The equivalent of the property code `kAudioServicesPropertyCompletePlaybackIfAppDies`.
     case CompletePlaybackIfAppDies
     
-    /// Returns "System Sound Services Property" for all cases.
+    /// Initializes a `SystemSoundProperty` from an `AudioServicesPropertyID`
+    public init?(code: AudioServicesPropertyID) {
+        switch code {
+        case kAudioServicesPropertyIsUISound:
+            self = .IsUISound
+        case kAudioServicesPropertyCompletePlaybackIfAppDies:
+            self = .CompletePlaybackIfAppDies
+        default:
+            return nil
+        }
+    }
     
+    /// Returns "System Sound Services Property" for all cases.
     public var domain: String {
         return "System Sound Services Property"
     }
     
-    /// A short description of the error.
-    
-    public var shortDescription: String {
-        switch self {
-        case .CompletePlaybackIfAppDies:
-            return "Complete playback if App dies"
-        case .IsUISound:
-            return "Is UI Sound"
-        }
-    }
-    
     /// The `AudioServicesPropertyID` associated with the property.
-    
     public var code: AudioServicesPropertyID {
         switch self {
         case .IsUISound:
@@ -59,16 +61,13 @@ public enum SystemSoundProperty: CodedPropertyType {
         }
     }
     
-    /// Initializes a `SystemSoundProperty` from an `AudioServicesPropertyID`
-    
-    public init?(code: AudioServicesPropertyID) {
-        switch code {
-        case kAudioServicesPropertyIsUISound:
-            self = .IsUISound
-        case kAudioServicesPropertyCompletePlaybackIfAppDies:
-            self = .CompletePlaybackIfAppDies
-        default:
-            return nil
+    /// A short description of the error.
+    public var shortDescription: String {
+        switch self {
+        case .CompletePlaybackIfAppDies:
+            return "Complete playback if App dies"
+        case .IsUISound:
+            return "Is UI Sound"
         }
     }
 }

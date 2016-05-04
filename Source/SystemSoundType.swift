@@ -118,7 +118,7 @@ extension SystemSoundType {
     
     /// Cause the phone to vibrate.
     public static func vibrate() {
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
     #endif

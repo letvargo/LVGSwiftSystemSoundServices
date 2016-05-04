@@ -27,6 +27,7 @@ extension SystemSoundID {
 
 extension SystemSoundID: SystemSoundType {
 
+    /// Returns self.
     public var soundID: SystemSoundID {
         return self
     }

@@ -9,16 +9,15 @@
 import AudioToolbox
 import LVGUtilities
  
-/// A wrapper around AudioToolbox's SystemSoundID
+/// A wrapper around AudioToolbox's SystemSoundID.
 
 public class SystemSound {
-
-    private struct _SystemSound: SystemSoundType {
-        private let soundID: SystemSoundID
-    }
     
-    private let sound: _SystemSound
+    // sound is private so only certain SystemSoundType methods can be exposed
+    // through SystemSound's public interface.
+    private let sound: SystemSoundID
     
+    // Plays the delegate's didFinishPlaying(_:) method.
     private lazy var systemSoundCompletionProc: AudioServicesSystemSoundCompletionProc = {
         
         _, inClientData in
@@ -27,9 +26,23 @@ public class SystemSound {
         systemSound.delegate?.didFinishPlaying(systemSound)
     }
     
-    public var soundID: SystemSoundID {
-        return self.sound.soundID
+    /**
+     
+     Initialize a `SystemSound` using an `NSURL`.
+     
+     - parameter url: The url of the sound file that will be played.
+     
+     - throws: `SystemSoundError`
+     
+     */
+    
+    // MARK: Initializing a SystemSound
+    
+    public init(url: NSURL) throws {
+        self.sound = try SystemSoundID(url: url)
     }
+    
+    // MARK: The delegate property
     
     /**
      
@@ -61,20 +74,7 @@ public class SystemSound {
         }
     }
     
-    /**
-     
-     Initialize a `SystemSound` using an `NSURL`.
-     
-     - parameter url: The url of the sound file that will be played.
-     
-     - throws: `SystemSoundError`
-     
-     */
-    
-    public init(url: NSURL) throws {
-        let soundID = try SystemSoundID(url: url)
-        self.sound = _SystemSound(soundID: soundID)
-    }
+    // MARK: Playing Sounds and Alerts
     
     /// Play the system sound assigned to the `soundID` property.
     public func play() {
@@ -118,6 +118,8 @@ public class SystemSound {
     }
     
     #endif
+    
+    // MARK: Working with Properties
     
     /**
      
@@ -194,6 +196,7 @@ public class SystemSound {
         try self.sound.completePlaybackIfAppDies(value)
     }
     
+    // Dispose of the sound during deinitialization.
     deinit {
         
         do {
