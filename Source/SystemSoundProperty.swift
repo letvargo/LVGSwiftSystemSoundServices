@@ -18,12 +18,6 @@ import LVGUtilities
  Each case has a `code` property equivalent to the `AudioServicesPropertyID`
  that System Sound Services uses to identify properties.
  
- **Cases and code values:**
- 
- `case IsUISound = kAudioServicesPropertyIsUISound`
- 
- `case CompletePlaybackIfAppDies = kAudioServicesPropertyCompletePlaybackIfAppDies`
- 
  */
 
 public enum SystemSoundProperty: CodedPropertyType {
