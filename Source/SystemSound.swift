@@ -22,7 +22,7 @@ public class SystemSound {
         
         _, inClientData in
         
-        let systemSound: SystemSound = bridgeTransfer(inClientData)
+        let systemSound: SystemSound = fromPointerConsume(inClientData)
         systemSound.delegate?.didFinishPlaying(systemSound)
     }
     
@@ -62,7 +62,7 @@ public class SystemSound {
                 do {
                 
                     try self.sound.addCompletion(
-                        inClientData: bridgeRetained(self),
+                        inClientData: toPointerRetain(self),
                         inCompletionRoutine: systemSoundCompletionProc)
                     
                 } catch {
