@@ -5,7 +5,7 @@
 language: objective-c
 podfile: Tests/Podfile
 before_install:
-- gem install cocoapods -v # Since Travis is not always on latest version
+- gem install cocoapods # Since Travis is not always on latest version
 - pod install --project-directory=Tests
 osx_image: xcode8.2
 script:
