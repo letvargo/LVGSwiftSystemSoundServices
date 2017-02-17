@@ -1,6 +1,6 @@
 .DS_Store
 xcuserdata/
 build/
-Tests.xcworkspace/
+TestProject/TestProject.xcworkspace
 Pods/
 Podfile.lock
