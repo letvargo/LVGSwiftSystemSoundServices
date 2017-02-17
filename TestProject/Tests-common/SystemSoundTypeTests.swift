@@ -23,9 +23,10 @@ class SystemSoundTypeTests: XCTestCase {
     }
     
     let callback: AudioServicesSystemSoundCompletionProc = { ssID, inClientData in
-        var data = UnsafeMutablePointer<ClientData>(inClientData)
-        data.pointee.wasCalled = true
-        data.pointee.expectation.fulfill()
+        
+        var data = inClientData?.assumingMemoryBound(to: ClientData.self)
+        data?.pointee.wasCalled = true
+        data?.pointee.expectation.fulfill()
     }
     
     let frog = URL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
@@ -75,7 +76,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             let propInfo = try sound.propertyInfo(.isUISound)
             
-            XCTAssertEqual(propInfo.size, UInt32(sizeof(UInt32)), "Did not obtain property size.")
+            XCTAssertEqual(propInfo.size, UInt32(MemoryLayout<UInt32>.size), "Did not obtain property size.")
         } catch {
             XCTFail("Error thrown:\n\(error)")
         }
@@ -97,7 +98,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             let size = try sound.propertySize(.isUISound)
             
-            XCTAssertEqual(size, UInt32(sizeof(UInt32)), "Did not determine that property is writable.")
+            XCTAssertEqual(size, UInt32(MemoryLayout<UInt32>.size), "Did not determine that property is writable.")
         } catch {
             XCTFail("Error thrown:\n\(error)")
         }
@@ -123,7 +124,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_isUISound)
             let uiSound = _isUISound == 1
             
             XCTAssertEqual(result, noErr, "testIsUISound internal error code \(result).")
@@ -142,7 +143,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_isUISound)
             
             XCTAssertEqual(result, noErr, "testIsUISoundSetsFalse internal error code \(result).")
             XCTAssertEqual(_isUISound, 0, "isUISound(false) failed.")
@@ -160,7 +161,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_isUISound)
             
             XCTAssertEqual(result, noErr, "testIsUISoundSetsTrue internal error code \(result).")
             XCTAssertEqual(_isUISound, 1, "isUISound(true) failed.")
@@ -178,7 +179,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_completes)
             let willComplete = _completes == 1
             
             XCTAssertEqual(result, noErr, "testCompletePlaybackIfAppDies internal error code \(result).")
@@ -197,7 +198,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_completes)
             
             XCTAssertEqual(result, noErr, "testCompletePlaybackIfAddDiesSetsFalse internal error code \(result).")
             XCTAssertEqual(_completes, 0, "completePlaybackIfAppDies(false) failed.")
@@ -215,7 +216,7 @@ class SystemSoundTypeTests: XCTestCase {
             var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
-            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
+            let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(MemoryLayout.size(ofValue: sound.soundID)), [sound.soundID], &size, &_completes)
             
             XCTAssertEqual(result, noErr, "testCompletePlaybackIfAppDiesSetsTrue internal error code \(result).")
             XCTAssertEqual(_completes, 1, "completePlaybackIfAppDies(true) failed.")

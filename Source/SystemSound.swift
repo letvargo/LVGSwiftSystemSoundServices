@@ -22,6 +22,8 @@ open class SystemSound {
         
         _, inClientData in
         
+        guard let inClientData = inClientData else { return }
+        
         let systemSound: SystemSound = fromPointerConsume(inClientData)
         systemSound.delegate?.didFinishPlaying(systemSound)
     }
@@ -62,7 +64,7 @@ open class SystemSound {
                 do {
                 
                     try self.sound.addCompletion(
-                        inClientData: toPointerRetain(self),
+                        inClientData: UnsafeMutableRawPointer(mutating: toPointerRetain(self)),
                         inCompletionRoutine: systemSoundCompletionProc)
                     
                 } catch {

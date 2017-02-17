@@ -18,7 +18,7 @@ extension SystemSoundID {
         var soundID = SystemSoundID.max
         
         try SystemSoundError.check(
-            AudioServicesCreateSystemSoundID(url, &soundID),
+            AudioServicesCreateSystemSoundID(url as CFURL, &soundID),
             message: "An error occurred while trying to associate the sound file at url \(url) with a SystemSoundID.")
         
         self.init(soundID)

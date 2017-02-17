@@ -75,7 +75,7 @@ extension SystemSoundType {
         _ inRunLoop: RunLoop? = nil,
         inRunLoopMode: String? = nil,
         inClientData: UnsafeMutableRawPointer? = nil,
-        inCompletionRoutine: AudioServicesSystemSoundCompletionProc) throws {
+        inCompletionRoutine: @escaping AudioServicesSystemSoundCompletionProc) throws {
         
         self.removeCompletion()
         
@@ -83,7 +83,7 @@ extension SystemSoundType {
             AudioServicesAddSystemSoundCompletion(
                 self.soundID,
                 inRunLoop?.getCFRunLoop(),
-                inRunLoopMode,
+                inRunLoopMode as CFString?,
                 inCompletionRoutine,
                 inClientData ),
             message: "An error occurred while adding a completion handler to system sound." )
@@ -166,13 +166,13 @@ extension SystemSoundType {
         try Error.check(
             AudioServicesGetPropertyInfo(
                 property.code,
-                UInt32(sizeofValue(self.soundID)),
+                UInt32(MemoryLayout.size(ofValue: self.soundID)),
                 [self.soundID],
                 &size,
                 &writable),
             message: "An error occurred while getting the property info for property '\(property.shortDescription)'.")
         
-        return (size, Bool(writable))
+        return (size, writable == true)
     }
     
     /**
