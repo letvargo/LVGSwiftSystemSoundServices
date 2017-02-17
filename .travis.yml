@@ -5,10 +5,10 @@
 language: objective-c
 podfile: Tests/Podfile
 before_install:
-- gem install cocoapods -v 1.0.0.rc.1 # Since Travis is not always on latest version
-- pod _1.0.0.rc.1_ install --project-directory=Tests
-osx_image: xcode7.3
+- gem install cocoapods -v # Since Travis is not always on latest version
+- pod install --project-directory=Tests
+osx_image: xcode8.2
 script:
 - open -b com.apple.iphonesimulator
 - set -o pipefail && xcodebuild test -workspace Tests/TestProject.xcworkspace -scheme Tests-iOS -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.2' | xcpretty
-- set -o pipefail && xcodebuild test -workspace Tests/TestProject.xcworkspace -scheme Tests-OSX -sdk macosx | xcpretty
+- set -o pipefail && xcodebuild test -workspace Tests/TestProject.xcworkspace -scheme Tests-macOS -sdk macosx | xcpretty
