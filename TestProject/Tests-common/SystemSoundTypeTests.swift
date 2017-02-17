@@ -24,11 +24,11 @@ class SystemSoundTypeTests: XCTestCase {
     
     let callback: AudioServicesSystemSoundCompletionProc = { ssID, inClientData in
         var data = UnsafeMutablePointer<ClientData>(inClientData)
-        data.memory.wasCalled = true
-        data.memory.expectation.fulfill()
+        data.pointee.wasCalled = true
+        data.pointee.expectation.fulfill()
     }
     
-    let frog = NSURL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
+    let frog = URL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
     
     var sound: SystemSoundID!
     
@@ -57,7 +57,7 @@ class SystemSoundTypeTests: XCTestCase {
         var didThrowError = false
         
         do {
-            let sound = try SystemSoundID(url: NSURL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png"))
+            let sound = try SystemSoundID(url: URL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png"))
             
             defer {
                 try! sound.dispose()
@@ -73,7 +73,7 @@ class SystemSoundTypeTests: XCTestCase {
     func testPropertyInfoSize() {
         do {
             
-            let propInfo = try sound.propertyInfo(.IsUISound)
+            let propInfo = try sound.propertyInfo(.isUISound)
             
             XCTAssertEqual(propInfo.size, UInt32(sizeof(UInt32)), "Did not obtain property size.")
         } catch {
@@ -84,7 +84,7 @@ class SystemSoundTypeTests: XCTestCase {
     func testPropertyInfoWritable() {
         do {
             
-            let propInfo = try sound.propertyInfo(.IsUISound)
+            let propInfo = try sound.propertyInfo(.isUISound)
             
             XCTAssertTrue(propInfo.writable, "Did not determine that property is writable.")
         } catch {
@@ -95,7 +95,7 @@ class SystemSoundTypeTests: XCTestCase {
     func testPropertySize() {
         do {
             
-            let size = try sound.propertySize(.IsUISound)
+            let size = try sound.propertySize(.isUISound)
             
             XCTAssertEqual(size, UInt32(sizeof(UInt32)), "Did not determine that property is writable.")
         } catch {
@@ -106,7 +106,7 @@ class SystemSoundTypeTests: XCTestCase {
     func testPropertyIsWritable() {
         do {
             
-            let writable = try sound.propertyIsWritable(.IsUISound)
+            let writable = try sound.propertyIsWritable(.isUISound)
             
             XCTAssertTrue(writable, "Did not determine that property is writable.")
         } catch {
@@ -120,7 +120,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             let isUISound = try sound.isUISound()
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
@@ -139,7 +139,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             try sound.isUISound(false)
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
@@ -157,7 +157,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             try sound.isUISound(true)
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _isUISound = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyIsUISound, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_isUISound)
@@ -175,7 +175,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             let completes = try sound.completePlaybackIfAppDies()
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
@@ -194,7 +194,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             try sound.completePlaybackIfAppDies(false)
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
@@ -212,7 +212,7 @@ class SystemSoundTypeTests: XCTestCase {
             
             try sound.completePlaybackIfAppDies(true)
             
-            var size = UInt32(sizeof(UInt32.self))
+            var size = UInt32(MemoryLayout<UInt32>.size)
             var _completes = UInt32.max
             
             let result = AudioServicesGetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies, UInt32(sizeofValue(sound.soundID)), [sound.soundID], &size, &_completes)
@@ -236,14 +236,14 @@ class SystemSoundTypeTests: XCTestCase {
     
     func testCompletionHandlerIsCalled() {
         
-        var data = ClientData(expectationWithDescription("CallbackWasCalled"))
+        var data = ClientData(expectation(description: "CallbackWasCalled"))
         
         do {
             
             try sound.addCompletion(inClientData: &data, inCompletionRoutine: callback)
             sound.play()
             
-            waitForExpectationsWithTimeout(30) {
+            waitForExpectations(timeout: 30) {
                 error in
                 if let error = error {
                     print("\(error)")

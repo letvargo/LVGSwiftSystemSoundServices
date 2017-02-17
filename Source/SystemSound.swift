@@ -11,14 +11,14 @@ import LVGUtilities
  
 /// A wrapper around AudioToolbox's SystemSoundID.
 
-public class SystemSound {
+open class SystemSound {
     
     // sound is private so only certain SystemSoundType methods can be exposed
     // through SystemSound's public interface.
-    private let sound: SystemSoundID
+    fileprivate let sound: SystemSoundID
     
     // Plays the delegate's didFinishPlaying(_:) method.
-    private lazy var systemSoundCompletionProc: AudioServicesSystemSoundCompletionProc = {
+    fileprivate lazy var systemSoundCompletionProc: AudioServicesSystemSoundCompletionProc = {
         
         _, inClientData in
         
@@ -38,7 +38,7 @@ public class SystemSound {
     
     // MARK: Initializing a SystemSound
     
-    public init(url: NSURL) throws {
+    public init(url: URL) throws {
         self.sound = try SystemSoundID(url: url)
     }
     
@@ -51,7 +51,7 @@ public class SystemSound {
      
      */
     
-    public weak var delegate: SystemSoundDelegate? {
+    open weak var delegate: SystemSoundDelegate? {
         
         didSet {
             
@@ -77,7 +77,7 @@ public class SystemSound {
     // MARK: Playing Sounds and Alerts
     
     /// Play the system sound assigned to the `soundID` property.
-    public func play() {
+    open func play() {
         self.sound.play()
     }
     
@@ -92,14 +92,14 @@ public class SystemSound {
      
      */
     
-    public func playAsAlert() {
+    open func playAsAlert() {
         self.sound.playAsAlert()
     }
     
     #if os(iOS)
     
     /// Cause the phone to vibrate.
-    public static func vibrate() {
+    open static func vibrate() {
         SystemSoundID.vibrate()
     }
     
@@ -137,7 +137,7 @@ public class SystemSound {
      
      */
     
-    public func isUISound() throws -> Bool {
+    open func isUISound() throws -> Bool {
         return try self.sound.isUISound()
     }
     
@@ -156,7 +156,7 @@ public class SystemSound {
      
      */
     
-    public func isUISound(value: Bool) throws {
+    open func isUISound(_ value: Bool) throws {
         try self.sound.isUISound(value)
     }
     
@@ -173,7 +173,7 @@ public class SystemSound {
      
      */
     
-    public func completePlaybackIfAppDies() throws -> Bool {
+    open func completePlaybackIfAppDies() throws -> Bool {
         return try self.sound.completePlaybackIfAppDies()
     }
     
@@ -192,7 +192,7 @@ public class SystemSound {
      
      */
     
-    public func completePlaybackIfAppDies(value: Bool) throws {
+    open func completePlaybackIfAppDies(_ value: Bool) throws {
         try self.sound.completePlaybackIfAppDies(value)
     }
     

@@ -23,18 +23,18 @@ import LVGUtilities
 public enum SystemSoundProperty: CodedPropertyType {
     
     /// The equivalent of the property code `kAudioServicesPropertyIsUISound`.
-    case IsUISound
+    case isUISound
     
     /// The equivalent of the property code `kAudioServicesPropertyCompletePlaybackIfAppDies`.
-    case CompletePlaybackIfAppDies
+    case completePlaybackIfAppDies
     
     /// Initializes a `SystemSoundProperty` from an `AudioServicesPropertyID`
     public init?(code: AudioServicesPropertyID) {
         switch code {
         case kAudioServicesPropertyIsUISound:
-            self = .IsUISound
+            self = .isUISound
         case kAudioServicesPropertyCompletePlaybackIfAppDies:
-            self = .CompletePlaybackIfAppDies
+            self = .completePlaybackIfAppDies
         default:
             return nil
         }
@@ -48,9 +48,9 @@ public enum SystemSoundProperty: CodedPropertyType {
     /// The `AudioServicesPropertyID` associated with the property.
     public var code: AudioServicesPropertyID {
         switch self {
-        case .IsUISound:
+        case .isUISound:
             return kAudioServicesPropertyIsUISound
-        case .CompletePlaybackIfAppDies:
+        case .completePlaybackIfAppDies:
             return kAudioServicesPropertyCompletePlaybackIfAppDies
         }
     }
@@ -58,9 +58,9 @@ public enum SystemSoundProperty: CodedPropertyType {
     /// A short description of the error.
     public var shortDescription: String {
         switch self {
-        case .CompletePlaybackIfAppDies:
+        case .completePlaybackIfAppDies:
             return "Complete playback if App dies"
-        case .IsUISound:
+        case .isUISound:
             return "Is UI Sound"
         }
     }

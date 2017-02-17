@@ -72,9 +72,9 @@ extension SystemSoundType {
      */
     
     public func addCompletion(
-        inRunLoop: NSRunLoop? = nil,
+        _ inRunLoop: RunLoop? = nil,
         inRunLoopMode: String? = nil,
-        inClientData: UnsafeMutablePointer<Void> = nil,
+        inClientData: UnsafeMutableRawPointer? = nil,
         inCompletionRoutine: AudioServicesSystemSoundCompletionProc) throws {
         
         self.removeCompletion()
@@ -159,7 +159,7 @@ extension SystemSoundType {
      
      */
     
-    public func propertyInfo(property: SystemSoundProperty) throws -> PropertyInfo {
+    public func propertyInfo(_ property: SystemSoundProperty) throws -> PropertyInfo {
         var size: UInt32 = UInt32.max
         var writable: DarwinBoolean = false
         
@@ -189,7 +189,7 @@ extension SystemSoundType {
      
      */
     
-    public func propertySize(property: SystemSoundProperty) throws -> UInt32 {
+    public func propertySize(_ property: SystemSoundProperty) throws -> UInt32 {
         return try self.propertyInfo(property).size
     }
     
@@ -207,7 +207,7 @@ extension SystemSoundType {
      
      */
     
-    public func propertyIsWritable(property: SystemSoundProperty) throws -> Bool {
+    public func propertyIsWritable(_ property: SystemSoundProperty) throws -> Bool {
         return try self.propertyInfo(property).writable
     }
     
@@ -229,14 +229,14 @@ extension SystemSoundType {
     
     public func isUISound() throws -> Bool {
         
-        let specifierSize = UInt32(sizeofValue(self.soundID))
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: self.soundID))
         
-        var size = try self.propertySize(.IsUISound)
+        var size = try self.propertySize(.isUISound)
         var result: UInt32 = 0
         
         try Error.check(
             AudioServicesGetProperty(
-                SystemSoundProperty.IsUISound.code,
+                SystemSoundProperty.isUISound.code,
                 specifierSize,
                 [self.soundID],
                 &size,
@@ -261,16 +261,16 @@ extension SystemSoundType {
      
      */
     
-    public func isUISound(value: Bool) throws {
+    public func isUISound(_ value: Bool) throws {
         
-        let specifierSize = UInt32(sizeofValue(self.soundID))
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: self.soundID))
         
-        let size = try self.propertySize(.IsUISound)
+        let size = try self.propertySize(.isUISound)
         let isUISound: UInt32 = value ? 1 : 0
         
         try Error.check(
             AudioServicesSetProperty(
-                SystemSoundProperty.IsUISound.code,
+                SystemSoundProperty.isUISound.code,
                 specifierSize,
                 [self.soundID],
                 size,
@@ -293,14 +293,14 @@ extension SystemSoundType {
     
     public func completePlaybackIfAppDies() throws -> Bool {
         
-        let specifierSize = UInt32(sizeofValue(self.soundID))
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: self.soundID))
         
-        var size = try self.propertySize(.CompletePlaybackIfAppDies)
+        var size = try self.propertySize(.completePlaybackIfAppDies)
         var result: UInt32 = 0
         
         try Error.check(
             AudioServicesGetProperty(
-                SystemSoundProperty.CompletePlaybackIfAppDies.code,
+                SystemSoundProperty.completePlaybackIfAppDies.code,
                 specifierSize,
                 [self.soundID],
                 &size,
@@ -325,16 +325,16 @@ extension SystemSoundType {
      
      */
     
-    public func completePlaybackIfAppDies(value: Bool) throws {
+    public func completePlaybackIfAppDies(_ value: Bool) throws {
         
-        let specifierSize = UInt32(sizeofValue(self.soundID))
+        let specifierSize = UInt32(MemoryLayout.size(ofValue: self.soundID))
         
-        let size = try self.propertySize(.CompletePlaybackIfAppDies)
+        let size = try self.propertySize(.completePlaybackIfAppDies)
         let completePlayback: UInt32 = value ? 1 : 0
         
         try Error.check(
             AudioServicesSetProperty(
-                SystemSoundProperty.CompletePlaybackIfAppDies.code,
+                SystemSoundProperty.completePlaybackIfAppDies.code,
                 specifierSize,
                 [self.soundID],
                 size,

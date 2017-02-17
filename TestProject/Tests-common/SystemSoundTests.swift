@@ -20,13 +20,13 @@ class SystemSoundTests: XCTestCase {
             self.expectation = expectation
         }
         
-        func didFinishPlaying(sound: SystemSound) {
+        func didFinishPlaying(_ sound: SystemSound) {
             self.wasCalled = true
             expectation.fulfill()
         }
     }
     
-    let frog = NSURL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
+    let frog = URL(fileURLWithPath: "/System/Library/Sounds/Frog.aiff")
     
     var sound: SystemSound!
     
@@ -43,7 +43,7 @@ class SystemSoundTests: XCTestCase {
         var didThrowError = false
         
         do {
-            let _ = try SystemSound(url: NSURL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png"))
+            let _ = try SystemSound(url: URL(fileURLWithPath: "/Users/doofnugget/Desktop/Sachi.png"))
             
         } catch {
             didThrowError = true
@@ -126,13 +126,13 @@ class SystemSoundTests: XCTestCase {
     
     func testDelegateIsCalled() {
         
-        let expectation = expectationWithDescription("CallbackWasCalled")
+        let expectation = self.expectation(description: "CallbackWasCalled")
         let delegate = SSDelegate(expectation: expectation)
         sound.delegate = delegate
         
         sound.play()
         
-        waitForExpectationsWithTimeout(10) {
+        waitForExpectations(timeout: 10) {
             error in
             if let error = error {
                 print("\(error)")

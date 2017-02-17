@@ -13,7 +13,7 @@ public typealias SystemSoundID = UInt32
 extension SystemSoundID {
     
     /// Initialize a `SystemSoundID` associated with the audio file at `url`.
-    public init(url: NSURL) throws {
+    public init(url: URL) throws {
         
         var soundID = SystemSoundID.max
         

@@ -11,5 +11,5 @@
 public protocol SystemSoundDelegate: class {
 
     /// This method is called when the `SystemSound` has completed playing.
-    func didFinishPlaying(sound: SystemSound)
+    func didFinishPlaying(_ sound: SystemSound)
 }
