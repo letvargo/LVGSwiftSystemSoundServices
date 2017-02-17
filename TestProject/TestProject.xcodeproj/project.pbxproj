@@ -178,6 +178,7 @@
 					};
 					930F3A201E57064200C0BE7C = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -571,6 +572,7 @@
 				930F3A1C1E5705F000C0BE7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		930F3A261E57064200C0BE7C /* Build configuration list for PBXNativeTarget "Tests-macOS" */ = {
 			isa = XCConfigurationList;
@@ -579,6 +581,7 @@
 				930F3A281E57064200C0BE7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
